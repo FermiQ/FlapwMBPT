@@ -1,2 +1,2 @@
 # FlapwMBPT
-GW project
+scGW including vertex corrections
