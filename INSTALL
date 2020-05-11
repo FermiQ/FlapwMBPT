@@ -1,0 +1,54 @@
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+INSTALLATION  REQUIREMENTS:
+
+OS       - Linux or MAC OS X
+Compiler - gfortran, Intel or other
+MPI      - OpenMPI or MPICH2 or 3 (optional but highly recommended)
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+We tested code installation and run tests under Linux,  Mac OS X and Microsoft (MS) Windows operating systems.
+
+We assume that majority of our users have Linux or Mac OS X operation systems and 
+provide installation steps only for those systems:
+
+1) Unpack the source cose package (it is in the /source directory): 
+   "tar zxvf FlapwMBPT.tar.gz "
+
+2) Change in to GW directory
+   "cd GW"
+
+3) In GW directory, please edit make.sys file or use one from example files provided in sys subdirectory:
+
+   make.sys.linux.gfortran.mpich2  - for parallel (MPICH2)  runs under LINUX OS with GFORTRAN compiler.
+   make.sys.linux.gfortran.openmpi - for parallel (OPENMPI) runs under LINUX OS with GFORTRAN compiler.
+   make.sys.linux.gfortran.serial  - for serial             runs under LINUX OS with GFORTRAN compiler.
+
+   make.sys.linux.intel.mpich2     - for parallel (MPICH2)  runs under LINUX OS with INTEL compiler.
+   make.sys.linux.intel.openmpi    - for parallel (OPENMPI) runs under LINUX OS with INTEL compiler.
+   make.sys.linux.intel.serial     - for serial             runs under LINUX OS with INTEL compiler.
+   
+   make.sys.macos.gfortran.openmpi - for parallel (OPENMPI) runs under MACOS OS X with GFORTRAN compiler.
+   make.sys.macos.gfortran.serial  - for serial             runs under MACOS OS X with GFORTRAN compiler.
+   
+  For example you have Linux with GNU gfortran compiler and OpenMPI installed then
+  being in GW directory issue the following command:
+  
+  "cp sys/make.sys.linux.gfortran.openmpi make.sys "
+   
+ 4) Make necessary changes in make.sys
+    Essential changes in makefile are the PATHs to the compiler (F90)  and BLAS and LAPACK libraries (LIB).  
+    One should also make sure that preprocesser flags -DMPI, -DFFTMKL, and -DUNIX are appropriate for the system. 
+
+    -DMPI    means you have available in you system OpenMPI or Mpich2 or 3 to be used for parallelization.
+    -DFFTMKL means Intel MKL FFT libraries are available in the system.
+    -DUNIX   means you run the code under LINUX or MAC OS X operating systems but not MS Windows.
+ 
+ 5) Execute the "make" command (in /src directory).
+
+    On multicore computer For faster compilation one might want to do the following instead:
+
+    "make mods"
+    "make -jNN"  where NN is number of cores available on your computer. Example: make -j8
+ 
+ 6) The executable "FlapwMBPT.exe" should be generated "src" directory upon successful compilation.
+
+
